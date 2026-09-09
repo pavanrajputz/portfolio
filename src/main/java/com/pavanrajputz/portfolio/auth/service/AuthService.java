@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class AuthService {
-    private AdminRepository adminRepository;
-    private PasswordEncoder passwordEncoder;
+    private final AdminRepository adminRepository;
+    private final PasswordEncoder passwordEncoder;
 
     public Admin authenticate(LoginRequest request){
         Admin admin = adminRepository
