@@ -1,27 +1,40 @@
 package com.pavanrajputz.portfolio.auth.service;
 
 import com.pavanrajputz.portfolio.auth.dto.LoginRequest;
+import com.pavanrajputz.portfolio.auth.dto.LoginResponse;
 import com.pavanrajputz.portfolio.entities.Admin;
 import com.pavanrajputz.portfolio.repositories.AdminRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 public class AuthService {
-    private final AdminRepository adminRepository;
-    private final PasswordEncoder passwordEncoder;
+    private final AuthenticationManager authManager;
+    private final JwtService jwtService;
 
-    public Admin authenticate(LoginRequest request){
-        Admin admin = adminRepository
-                .findByEmail(request.getEmail())
-                .orElseThrow(() -> new RuntimeException("User not found"));
+    public LoginResponse login(LoginRequest request){
+        Authentication auth = authManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                        request.getEmail(),
+                        request.getPassword()
+                )
+        );
 
-        if(!passwordEncoder.matches(request.getPassword(), admin.getPassword())){
-            throw new RuntimeException("Invalid credentials");
-        }
+        UserDetails user = (UserDetails) auth.getPrincipal();
 
-        return admin;
+        assert user != null;
+        String token = jwtService.generateToken(user);
+
+        return LoginResponse.builder()
+                .accessToken(token)
+                .build();
+
     }
+
 }
