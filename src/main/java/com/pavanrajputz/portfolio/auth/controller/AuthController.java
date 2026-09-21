@@ -2,6 +2,7 @@ package com.pavanrajputz.portfolio.auth.controller;
 
 
 import com.pavanrajputz.portfolio.auth.dto.LoginRequest;
+import com.pavanrajputz.portfolio.auth.dto.LoginResponse;
 import com.pavanrajputz.portfolio.auth.service.AuthService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -18,8 +19,7 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping("/login")
-    public String login(@Valid @RequestBody LoginRequest loginRequest){
-        authService.authenticate(loginRequest);
-        return "Login Successful";
+    public LoginResponse login(@Valid @RequestBody LoginRequest loginRequest){
+        return authService.login(loginRequest);
     }
 }
