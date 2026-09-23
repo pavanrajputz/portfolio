@@ -36,12 +36,15 @@ public class Project {
     private String technologies;
 
     @Column(nullable = false)
-    private boolean featured = false;
+    private Boolean featured = false;
 
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;
+
+    @Column(name = "is_deleted")
+    private Boolean isDeleted = false;
 
     @PrePersist
     protected void onCreate(){
