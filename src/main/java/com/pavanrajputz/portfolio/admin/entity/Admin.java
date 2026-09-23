@@ -1,4 +1,4 @@
-package com.pavanrajputz.portfolio.entities;
+package com.pavanrajputz.portfolio.admin.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;

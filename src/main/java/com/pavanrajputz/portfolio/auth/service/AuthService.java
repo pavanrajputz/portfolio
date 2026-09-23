@@ -2,14 +2,11 @@ package com.pavanrajputz.portfolio.auth.service;
 
 import com.pavanrajputz.portfolio.auth.dto.LoginRequest;
 import com.pavanrajputz.portfolio.auth.dto.LoginResponse;
-import com.pavanrajputz.portfolio.entities.Admin;
-import com.pavanrajputz.portfolio.repositories.AdminRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service

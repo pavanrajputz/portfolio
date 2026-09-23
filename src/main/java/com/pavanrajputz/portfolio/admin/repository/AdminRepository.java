@@ -1,6 +1,6 @@
-package com.pavanrajputz.portfolio.repositories;
+package com.pavanrajputz.portfolio.admin.repository;
 
-import com.pavanrajputz.portfolio.entities.Admin;
+import com.pavanrajputz.portfolio.admin.entity.Admin;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

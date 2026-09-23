@@ -1,8 +1,8 @@
 package com.pavanrajputz.portfolio.config;
 
-import com.pavanrajputz.portfolio.entities.Admin;
-import com.pavanrajputz.portfolio.entities.Role;
-import com.pavanrajputz.portfolio.repositories.AdminRepository;
+import com.pavanrajputz.portfolio.admin.entity.Admin;
+import com.pavanrajputz.portfolio.admin.entity.Role;
+import com.pavanrajputz.portfolio.admin.repository.AdminRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;

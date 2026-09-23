@@ -1,6 +1,6 @@
 package com.pavanrajputz.portfolio.auth.service;
 
-import com.pavanrajputz.portfolio.repositories.AdminRepository;
+import com.pavanrajputz.portfolio.admin.repository.AdminRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
