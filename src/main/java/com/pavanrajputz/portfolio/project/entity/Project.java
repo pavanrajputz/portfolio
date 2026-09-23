@@ -43,7 +43,8 @@ public class Project {
 
     private LocalDateTime updatedAt;
 
-    @Column(name = "is_deleted")
+    @Builder.Default
+    @Column(name = "is_deleted", nullable = false)
     private Boolean isDeleted = false;
 
     @PrePersist

@@ -35,14 +35,14 @@ public class ProjectService {
     }
 
     public List<ProjectResponse> getAllProjects(){
-        return repo.findAll()
+        return repo.findAllByIsDeletedIsFalse()
                 .stream()
                 .map(this::mapToResponse)
                 .toList();
     }
 
     public ProjectResponse getProjectById(Long id){
-        Project project = repo.findById(id)
+        Project project = repo.findByIdAndIsDeletedIsFalse(id)
                 .orElseThrow(() ->
                         new ResourceNotFound(
                                 "Project not found with id " + id
@@ -55,7 +55,7 @@ public class ProjectService {
             Long id,
             ProjectRequest request
     ){
-        Project project = repo.findById(id)
+        Project project = repo.findByIdAndIsDeletedIsFalse(id)
                 .orElseThrow(() ->
                         new ResourceNotFound(
                                 "Project not found with id " + id
@@ -78,7 +78,7 @@ public class ProjectService {
     }
 
     public void deleteProjectById(Long id){
-        Project project = repo.findById(id)
+        Project project = repo.findByIdAndIsDeletedIsFalse(id)
                 .orElseThrow(() ->
                         new ResourceNotFound(
                                 "Project not found with id " + id
@@ -86,10 +86,12 @@ public class ProjectService {
                 );
 
         project.setIsDeleted(true);
+        repo.save(project);
     }
 
     private ProjectResponse mapToResponse(Project project){
         return ProjectResponse.builder()
+                .id(project.getId())
                 .title(project.getTitle())
                 .description(project.getDescription())
                 .imageUrl(project.getImageUrl())
