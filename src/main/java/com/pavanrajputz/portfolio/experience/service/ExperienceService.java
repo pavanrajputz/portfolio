@@ -117,7 +117,7 @@ public class ExperienceService {
                         request.getEndDate().isBefore(request.getStartDate())
         ){
             throw new IllegalArgumentException(
-                    "End date must be before start date"
+                    "End date can not be before start date"
             );
         }
 
