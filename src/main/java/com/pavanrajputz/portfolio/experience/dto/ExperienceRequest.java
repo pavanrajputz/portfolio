@@ -16,7 +16,7 @@ public class ExperienceRequest {
 
     @NotBlank(message = "Company cannot be blank")
     @Size(max = 150, message = "Company cannot exceed 150 characters")
-    private String comapny;
+    private String company;
 
     @NotBlank(message = "Position cannot be blank")
     @Size(max = 150, message = "Position cannot exceed 150 characters")

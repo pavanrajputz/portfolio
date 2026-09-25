@@ -19,6 +19,7 @@ public class ExperienceResponse {
     private String description;
     private LocalDate startDate;
     private LocalDate endDate;
+    private String technologies;
     private Boolean currentlyWorking;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
