@@ -3,6 +3,7 @@ package com.pavanrajputz.portfolio.skill.controller;
 import com.pavanrajputz.portfolio.skill.dto.SkillRequest;
 import com.pavanrajputz.portfolio.skill.dto.SkillResponse;
 import com.pavanrajputz.portfolio.skill.service.SkillService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@SecurityRequirement(name = "bearerAuth")
 @RestController
 @RequestMapping("/api/admin/skills")
 @RequiredArgsConstructor

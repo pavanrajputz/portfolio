@@ -3,6 +3,7 @@ package com.pavanrajputz.portfolio.education.controller;
 import com.pavanrajputz.portfolio.education.dto.EducationRequest;
 import com.pavanrajputz.portfolio.education.dto.EducationResponse;
 import com.pavanrajputz.portfolio.education.service.EducationService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@SecurityRequirement(name = "bearerAuth")
 @RestController
 @RequestMapping("/api/admin/education")
 @RequiredArgsConstructor

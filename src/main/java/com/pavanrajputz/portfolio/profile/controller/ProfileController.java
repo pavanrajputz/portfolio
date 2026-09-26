@@ -3,6 +3,7 @@ package com.pavanrajputz.portfolio.profile.controller;
 import com.pavanrajputz.portfolio.profile.dto.ProfileRequest;
 import com.pavanrajputz.portfolio.profile.dto.ProfileResponse;
 import com.pavanrajputz.portfolio.profile.service.ProfileService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -10,8 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
+@SecurityRequirement(name = "bearerAuth")
 @RestController
 @RequestMapping("/api/admin/profile")
 @RequiredArgsConstructor
