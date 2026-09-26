@@ -1,0 +1,48 @@
+package com.pavanrajputz.portfolio.contact.entity;
+
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.time.LocalDateTime;
+
+@Entity
+@Table(name = "contact_messages")
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class ContactMessage {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false, length = 100)
+    private String name;
+
+    @Column(nullable = false, length = 150)
+    private String email;
+
+    @Column(length = 200)
+    private String subject;
+
+    @Column(nullable = false, columnDefinition = "TEXT")
+    private String message;
+
+    @Column(nullable = false, name = "is_read")
+    @Builder.Default
+    private Boolean isRead = false;
+
+    @Column(nullable = false, name = "is_deleted")
+    @Builder.Default
+    private Boolean isDeleted = false;
+
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime createdAt;
+
+    @PrePersist
+    protected void onCreate(){
+        this.createdAt = LocalDateTime.now();
+    }
+
+}
