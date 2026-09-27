@@ -1,11 +1,10 @@
-package com.pavanrajputz.portfolio;
+package com.pavanrajputz.portfolio.project.service;
 
 import com.pavanrajputz.portfolio.exception.ResourceNotFound;
 import com.pavanrajputz.portfolio.project.dto.ProjectRequest;
 import com.pavanrajputz.portfolio.project.dto.ProjectResponse;
 import com.pavanrajputz.portfolio.project.entity.Project;
 import com.pavanrajputz.portfolio.project.repository.ProjectRepository;
-import com.pavanrajputz.portfolio.project.service.ProjectService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
