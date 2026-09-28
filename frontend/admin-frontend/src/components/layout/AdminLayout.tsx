@@ -1,12 +1,8 @@
-import type { ReactNode } from "react";
+import { Outlet } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import Topbar from "./Topbar";
 
-interface AdminLayoutProps {
-    children: ReactNode;
-}
-
-function AdminLayout({ children }: AdminLayoutProps) {
+function AdminLayout() {
     return (
         <div className="min-h-screen bg-zinc-950 text-white">
 
@@ -21,7 +17,7 @@ function AdminLayout({ children }: AdminLayoutProps) {
 
                 {/* Page content */}
                 <main className="p-8">
-                    {children}
+                    <Outlet/>
                 </main>
 
             </div>

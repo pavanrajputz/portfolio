@@ -80,19 +80,18 @@ function Sidebar(){
          w-64 flex-col border-r border-zinc-800 bg-zinc-950 text-white">
 
         {/*    logo*/}
-            <div className="flex h-20 items-center border-b border-zinc-800 px-6">
-                <div>
-                    <h1 className="text-lg font-semibold">
-                        Portfolio
-                    </h1>
+            <div className="flex h-24 flex-col justify-center border-b border-zinc-800 px-6">
+                <h1 className="text-lg font-semibold leading-tight">
+                    Portfolio
+                </h1>
 
-                    <p className="flex-1 overflow-y-auto px-3 py-6">
-                        Admin Panel
-                    </p>
-                </div>
+                <p className="mt-1 text-xs text-zinc-500">
+                    Admin Panel
+                </p>
             </div>
 
-        {/*    Navigation*/}
+
+            {/*    Navigation*/}
             <nav className="flex-1 overflow-y-auto px-3 py-6">
 
                 <p className="mb-3 px-3 text-xs font-medium uppercase tracking-wider text-zinc-500">

@@ -1,11 +1,11 @@
-import AdminLayout from "./components/layout/AdminLayout";
-import Dashboard from "./pages/dashboard/Dashboard.tsx";
+import {BrowserRouter} from "react-router-dom";
+import AppRoutes from "./routes/AppRoutes.tsx";
 
 function App() {
     return (
-        <AdminLayout>
-            <Dashboard />
-        </AdminLayout>
+        <BrowserRouter>
+            <AppRoutes/>
+        </BrowserRouter>
     );
 }
 
