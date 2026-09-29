@@ -97,6 +97,7 @@ public class ProjectService {
                 .imageUrl(project.getImageUrl())
                 .githubUrl(project.getGithubUrl())
                 .liveUrl(project.getLiveUrl())
+                .technologies(project.getTechnologies())
                 .featured(project.getFeatured())
                 .createdAt(project.getCreatedAt())
                 .updatedAt(project.getUpdatedAt())
