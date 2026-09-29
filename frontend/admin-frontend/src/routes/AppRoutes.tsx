@@ -3,6 +3,17 @@ import {Routes, Route, Navigate} from "react-router-dom";
 import AdminLayout  from "../components/layout/AdminLayout.tsx";
 import Dashboard from "../pages/dashboard/Dashboard.tsx";
 
+import Profile from "../pages/profile/Profile.tsx";
+import Projects from "../pages/projects/Projects.tsx";
+import Experience from "../pages/experience/Experience.tsx";
+import Education from "../pages/education/Education.tsx";
+import Skills from "../pages/skills/Skills.tsx";
+import Certificates from "../pages/certificates/Certificates.tsx";
+import Resume from "../pages/resume/Resume.tsx";
+import Messages from "../pages/messages/Messages.tsx";
+import Activity from "../pages/activity/Activity.tsx";
+import Settings from "../pages/settings/Settings.tsx";
+
 
 function AppRoutes(){
     return (

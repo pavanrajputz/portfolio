@@ -37,7 +37,7 @@ function Profile() {
             </div>
 
         {/*    Profile header*/}
-            <section className="rounded-xl border border-zinc-800 bg-800/40 p-6">
+            <section className="rounded-xl border border-zinc-800 bg-zing-800/40 p-6">
                 <div className="flex flex-col gap-6 sm:flex-row sm:items-center">
                 {/*    Profile image*/}
                     <div className="relative">
@@ -66,7 +66,7 @@ function Profile() {
                             Full Stack Developer
                         </p>
 
-                        <div className="mt-3 flex items-center gap-2 text-xs text-emrald-400">
+                        <div className="mt-3 flex items-center gap-2 text-xs text-emerald-400">
                             <span className="h-2 w-2 rounded-full bg-emerald-400"/>
                             Public profile active
                         </div>
@@ -102,7 +102,7 @@ function Profile() {
                             className="w-full rounded-lg border border-zinc-800
                             bg-zinc-950 px-4 py-3 text-sm text-white
                             outline-none transition-colors
-                            placeholder:text-zince-600
+                            placeholder:text-zinc-600
                             focus:border-zinc-600"
                             />
                     </div>

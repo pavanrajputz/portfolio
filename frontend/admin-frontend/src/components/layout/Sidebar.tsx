@@ -13,6 +13,7 @@ import {
     LogOut,
 } from "lucide-react";
 
+import { NavLink } from "react-router-dom";
 
 const navigation = [
     {
@@ -72,15 +73,18 @@ const navigation = [
     },
 ];
 
-
-
-function Sidebar(){
+function Sidebar() {
     return (
-        <aside className="fixed left-0 top-0 flex h-screen
-         w-64 flex-col border-r border-zinc-800 bg-zinc-950 text-white">
+        <aside
+            className="fixed left-0 top-0 flex h-screen w-64
+            flex-col border-r border-zinc-800 bg-zinc-950 text-white"
+        >
 
-        {/*    logo*/}
-            <div className="flex h-24 flex-col justify-center border-b border-zinc-800 px-6">
+            {/* Logo */}
+            <div
+                className="flex h-24 flex-col justify-center
+                border-b border-zinc-800 px-6"
+            >
                 <h1 className="text-lg font-semibold leading-tight">
                     Portfolio
                 </h1>
@@ -90,11 +94,13 @@ function Sidebar(){
                 </p>
             </div>
 
-
-            {/*    Navigation*/}
+            {/* Navigation */}
             <nav className="flex-1 overflow-y-auto px-3 py-6">
 
-                <p className="mb-3 px-3 text-xs font-medium uppercase tracking-wider text-zinc-500">
+                <p
+                    className="mb-3 px-3 text-xs font-medium
+                    uppercase tracking-wider text-zinc-500"
+                >
                     Management
                 </p>
 
@@ -103,17 +109,28 @@ function Sidebar(){
                         const Icon = item.icon;
 
                         return (
-                            <a
+                            <NavLink
                                 key={item.path}
-                                href={item.path}
-                                className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm text-zinc-400 transition-colors hover:bg-zinc-900 hover:text-white"
+                                to={item.path}
+                                end={item.path === "/admin"}
+                                className={({ isActive }) =>
+                                    `flex items-center gap-3 rounded-lg
+                                    px-3 py-2.5 text-sm transition-colors ${
+                                        isActive
+                                            ? "bg-zinc-800 text-white"
+                                            : "text-zinc-400 hover:bg-zinc-900 hover:text-white"
+                                    }`
+                                }
                             >
-                                <Icon size={18} strokeWidth={1.8} />
+                                <Icon
+                                    size={18}
+                                    strokeWidth={1.8}
+                                />
 
                                 <span>
-                  {item.title}
-                </span>
-                            </a>
+                                    {item.title}
+                                </span>
+                            </NavLink>
                         );
                     })}
                 </div>
@@ -122,16 +139,20 @@ function Sidebar(){
             {/* Logout */}
             <div className="border-t border-zinc-800 p-3">
                 <button
-                    className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm text-zinc-400 transition-colors hover:bg-zinc-900 hover:text-white"
+                    className="flex w-full items-center gap-3
+                    rounded-lg px-3 py-2.5 text-sm text-zinc-400
+                    transition-colors hover:bg-zinc-900 hover:text-white"
                 >
-                    <LogOut size={18} strokeWidth={1.8} />
+                    <LogOut
+                        size={18}
+                        strokeWidth={1.8}
+                    />
 
                     <span>
-            Logout
-          </span>
+                        Logout
+                    </span>
                 </button>
             </div>
-
 
         </aside>
     );
