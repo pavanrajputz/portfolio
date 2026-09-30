@@ -1,10 +1,17 @@
 import api from "./api";
-import type {Project} from "../types/Project.ts";
+
+import type {
+    Project,
+    ProjectRequest,
+} from "../types/Project";
 
 const PROJECT_API = "/api/admin/projects";
 
 export const getProjects = async (): Promise<Project[]> => {
-    const response = await api.get<Project[]>(PROJECT_API);
+    const response = await api.get<Project[]>(
+        PROJECT_API
+    );
+
     return response.data;
 };
 
@@ -19,15 +26,7 @@ export const getProjectById = async (
 };
 
 export const createProject = async (
-    project: {
-        title: string;
-        description: string;
-        imageUrl?: string;
-        githubUrl?: string;
-        liveUrl?: string;
-        technologies: string;
-        featured: boolean;
-    }
+    project: ProjectRequest
 ): Promise<Project> => {
     const response = await api.post<Project>(
         PROJECT_API,
@@ -39,15 +38,7 @@ export const createProject = async (
 
 export const updateProject = async (
     id: number,
-    project: {
-        title: string;
-        description: string;
-        imageUrl?: string;
-        githubUrl?: string;
-        liveUrl?: string;
-        technologies: string;
-        featured: boolean;
-    }
+    project: ProjectRequest
 ): Promise<Project> => {
     const response = await api.put<Project>(
         `${PROJECT_API}/${id}`,
@@ -60,5 +51,7 @@ export const updateProject = async (
 export const deleteProject = async (
     id: number
 ): Promise<void> => {
-    await api.delete(`${PROJECT_API}/${id}`);
+    await api.delete(
+        `${PROJECT_API}/${id}`
+    );
 };
