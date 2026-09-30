@@ -4,6 +4,7 @@ import com.pavanrajputz.portfolio.auth.service.JwtAuthenticationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -34,6 +35,16 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http)
             throws Exception {
         http
+                .headers(headers ->
+                        headers
+                                .contentTypeOptions(Customizer.withDefaults())
+                                .frameOptions(frame -> frame.deny())
+                                .httpStrictTransportSecurity(hsts ->
+                                        hsts
+                                                .includeSubDomains(true)
+                                                .maxAgeInSeconds(31536000)
+                                )
+                )
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(cors -> {})
                 .sessionManagement(
