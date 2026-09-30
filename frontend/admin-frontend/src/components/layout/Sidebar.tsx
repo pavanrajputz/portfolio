@@ -13,7 +13,12 @@ import {
     LogOut,
 } from "lucide-react";
 
-import { NavLink } from "react-router-dom";
+import {
+    NavLink,
+    useNavigate,
+} from "react-router-dom";
+
+import {useAuth} from "../../context/AuthContext";
 
 const navigation = [
     {
@@ -74,10 +79,22 @@ const navigation = [
 ];
 
 function Sidebar() {
+    const {logout} = useAuth();
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        logout();
+
+        navigate("/admin/login", {
+            replace: true,
+        });
+    };
+
     return (
         <aside
             className="fixed left-0 top-0 flex h-screen w-64
-            flex-col border-r border-zinc-800 bg-zinc-950 text-white"
+            flex-col border-r border-zinc-800 bg-zinc-950
+            text-white"
         >
 
             {/* Logo */}
@@ -96,7 +113,6 @@ function Sidebar() {
 
             {/* Navigation */}
             <nav className="flex-1 overflow-y-auto px-3 py-6">
-
                 <p
                     className="mb-3 px-3 text-xs font-medium
                     uppercase tracking-wider text-zinc-500"
@@ -113,9 +129,10 @@ function Sidebar() {
                                 key={item.path}
                                 to={item.path}
                                 end={item.path === "/admin"}
-                                className={({ isActive }) =>
-                                    `flex items-center gap-3 rounded-lg
-                                    px-3 py-2.5 text-sm transition-colors ${
+                                className={({isActive}) =>
+                                    `flex items-center gap-3
+                                    rounded-lg px-3 py-2.5 text-sm
+                                    transition-colors ${
                                         isActive
                                             ? "bg-zinc-800 text-white"
                                             : "text-zinc-400 hover:bg-zinc-900 hover:text-white"
@@ -139,9 +156,11 @@ function Sidebar() {
             {/* Logout */}
             <div className="border-t border-zinc-800 p-3">
                 <button
+                    onClick={handleLogout}
                     className="flex w-full items-center gap-3
                     rounded-lg px-3 py-2.5 text-sm text-zinc-400
-                    transition-colors hover:bg-zinc-900 hover:text-white"
+                    transition-colors hover:bg-zinc-900
+                    hover:text-white"
                 >
                     <LogOut
                         size={18}

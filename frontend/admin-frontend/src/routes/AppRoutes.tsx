@@ -1,8 +1,15 @@
+import {
+    Routes,
+    Route,
+    Navigate,
+} from "react-router-dom";
 
-import {Routes, Route, Navigate} from "react-router-dom";
-import AdminLayout  from "../components/layout/AdminLayout.tsx";
+import AdminLayout from "../components/layout/AdminLayout.tsx";
+import ProtectedRoute from "./ProtectedRoute.tsx";
+
+import Login from "../pages/auth/Login.tsx";
+
 import Dashboard from "../pages/dashboard/Dashboard.tsx";
-
 import Profile from "../pages/profile/Profile.tsx";
 import Projects from "../pages/projects/Projects.tsx";
 import Experience from "../pages/experience/Experience.tsx";
@@ -14,40 +21,90 @@ import Messages from "../pages/messages/Messages.tsx";
 import Activity from "../pages/activity/Activity.tsx";
 import Settings from "../pages/settings/Settings.tsx";
 
-
-function AppRoutes(){
+function AppRoutes() {
     return (
         <Routes>
-            <Route path="/admin" element={<AdminLayout/>}>
-                <Route index element={<Dashboard />} />
-                <Route path="profile" element={<Profile />} />
 
-                <Route path="projects" element={<Projects />} />
+            {/* Public authentication */}
+            <Route
+                path="/admin/login"
+                element={<Login />}
+            />
 
-                <Route path="experience" element={<Experience />} />
-
-                <Route path="education" element={<Education />} />
-
-                <Route path="skills" element={<Skills />} />
-
+            {/* Protected admin area */}
+            <Route element={<ProtectedRoute />}>
                 <Route
-                    path="certificates"
-                    element={<Certificates />}
-                />
+                    path="/admin"
+                    element={<AdminLayout />}
+                >
+                    <Route
+                        index
+                        element={<Dashboard />}
+                    />
 
-                <Route path="resume" element={<Resume />} />
+                    <Route
+                        path="profile"
+                        element={<Profile />}
+                    />
 
-                <Route path="messages" element={<Messages />} />
+                    <Route
+                        path="projects"
+                        element={<Projects />}
+                    />
 
-                <Route path="activity" element={<Activity />} />
+                    <Route
+                        path="experience"
+                        element={<Experience />}
+                    />
 
-                <Route path="settings" element={<Settings />} />
+                    <Route
+                        path="education"
+                        element={<Education />}
+                    />
+
+                    <Route
+                        path="skills"
+                        element={<Skills />}
+                    />
+
+                    <Route
+                        path="certificates"
+                        element={<Certificates />}
+                    />
+
+                    <Route
+                        path="resume"
+                        element={<Resume />}
+                    />
+
+                    <Route
+                        path="messages"
+                        element={<Messages />}
+                    />
+
+                    <Route
+                        path="activity"
+                        element={<Activity />}
+                    />
+
+                    <Route
+                        path="settings"
+                        element={<Settings />}
+                    />
+                </Route>
             </Route>
 
+            {/* Fallback */}
             <Route
                 path="*"
-                element={<Navigate to="/admin" replace/> }
+                element={
+                    <Navigate
+                        to="/admin"
+                        replace
+                    />
+                }
             />
+
         </Routes>
     );
 }

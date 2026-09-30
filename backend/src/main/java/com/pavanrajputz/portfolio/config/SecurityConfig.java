@@ -35,6 +35,7 @@ public class SecurityConfig {
             throws Exception {
         http
                 .csrf(AbstractHttpConfigurer::disable)
+                .cors(cors -> {})
                 .sessionManagement(
                         session ->
                                 session.sessionCreationPolicy(
