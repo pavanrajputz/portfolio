@@ -3,6 +3,7 @@ package com.pavanrajputz.portfolio.certificate.controller;
 import com.pavanrajputz.portfolio.certificate.dto.CertificateRequest;
 import com.pavanrajputz.portfolio.certificate.dto.CertificateResponse;
 import com.pavanrajputz.portfolio.certificate.service.CertificateService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -12,8 +13,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@SecurityRequirement(name = "bearerAuth")
 @RestController
-@RequestMapping
+@RequestMapping("/api/admin/certificates")
 @RequiredArgsConstructor
 @PreAuthorize("hasRole('ADMIN')")
 public class CertificateController {
