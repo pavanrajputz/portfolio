@@ -43,9 +43,14 @@ function Navigation() {
             <div className="flex items-center justify-between">
                 <button
                     onClick={() => scrollToSection("home")}
-                    className="text-lg font-semibold tracking-tight"
+                    className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full"
+                    aria-label="Go to home"
                 >
-                    P
+                    <img
+                        src="/images/profile.jpeg"
+                        alt="Pawan Kumar"
+                        className="h-full w-full object-cover"
+                    />
                 </button>
 
                 <nav className="hidden items-center gap-8 md:flex">
