@@ -1,20 +1,14 @@
 import Navigation from "../components/navigation/Navigation";
 import NavigationDock from "../components/navigation/NavigationDock";
+import HeroSection from "../components/hero/HeroSection.tsx";
 
 function Home() {
     return (
-        <main className="min-h-screen bg-white text-black">
+        <main className="bg-white text-black">
             <Navigation />
             <NavigationDock />
 
-            <section
-                id="home"
-                className="flex min-h-screen items-center justify-center"
-            >
-                <h1 className="text-6xl font-semibold tracking-tight">
-                    Portfolio
-                </h1>
-            </section>
+            <HeroSection />
 
             <section
                 id="experience"
