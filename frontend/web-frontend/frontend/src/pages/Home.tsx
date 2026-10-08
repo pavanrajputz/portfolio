@@ -4,6 +4,7 @@ import HeroSection from "../components/hero/HeroSection.tsx";
 import SoundToggle from "../components/sound/SoundToggle.tsx";
 import ExperienceSection from "../components/experience/ExperienceSection";
 import ProjectsSection from "../components/projects/ProjectsSection";
+import AboutSection from "../components/about/AboutSection";
 
 function Home() {
     return (
@@ -18,12 +19,7 @@ function Home() {
 
             <ProjectsSection />
 
-            <section
-                id="about"
-                className="flex min-h-screen items-center justify-center"
-            >
-                <h2 className="text-5xl font-semibold">About</h2>
-            </section>
+            <AboutSection />
 
             <section
                 id="contact"
