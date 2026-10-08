@@ -1,6 +1,9 @@
 import Navigation from "../components/navigation/Navigation";
 import NavigationDock from "../components/navigation/NavigationDock";
 import HeroSection from "../components/hero/HeroSection.tsx";
+import SoundToggle from "../components/sound/SoundToggle.tsx";
+import ExperienceSection from "../components/experience/ExperienceSection";
+import ProjectsSection from "../components/projects/ProjectsSection";
 
 function Home() {
     return (
@@ -9,20 +12,11 @@ function Home() {
             <NavigationDock />
 
             <HeroSection />
+            <SoundToggle />
 
-            <section
-                id="experience"
-                className="flex min-h-screen items-center justify-center"
-            >
-                <h2 className="text-5xl font-semibold">Experience</h2>
-            </section>
+            <ExperienceSection />
 
-            <section
-                id="projects"
-                className="flex min-h-screen items-center justify-center"
-            >
-                <h2 className="text-5xl font-semibold">Projects</h2>
-            </section>
+            <ProjectsSection />
 
             <section
                 id="about"
