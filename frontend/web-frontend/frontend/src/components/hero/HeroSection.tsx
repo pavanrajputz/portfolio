@@ -2,8 +2,8 @@ import { useEffect, useRef } from "react";
 import type { ReactNode, MutableRefObject } from "react";
 import gsap from "gsap";
 
-const BASE = ["MAKING", "GOOD", "SHIT", "SINCE", "2024"];
-const ALT = ["HIDING", "BAD", "SHIT", "SINCE", "2024"];
+const BASE = ["BUILDING", "DIGITAL", "EXPERIENCES."];
+const ALT = ["HIDING", "BAD", "SHIT", "IN THE", "CODE."];
 
 const DOT_R = 22; // idle blob radius
 const HOVER_R = 190; // radius over the headline
@@ -153,6 +153,7 @@ export default function HeroSection() {
     const glowRef = useRef<SVGPathElement>(null);
     const edgeRef = useRef<SVGPathElement>(null);
     const headlineRef = useRef<HTMLHeadingElement>(null);
+    const revealRefs = useRef<HTMLElement[]>([]);
     const baseIcons = useRef<(HTMLSpanElement | null)[]>([]);
     const overlayIcons = useRef<(HTMLSpanElement | null)[]>([]);
     const anchors = useRef<(HTMLAnchorElement | null)[]>([]);
@@ -166,6 +167,7 @@ export default function HeroSection() {
         const glowPath = glowRef.current!;
         const edgePath = edgeRef.current!;
         const headline = headlineRef.current!;
+        const revealTargets = [headline, ...revealRefs.current].filter(Boolean);
 
         const target = { x: 0, y: 0 }; // raw target (cursor or pulled icon)
         const center = { x: 0, y: 0 }; // eased center the points orbit around
@@ -287,9 +289,11 @@ export default function HeroSection() {
             setR(0);
         });
 
-        // headline: big reveal
-        on(headline, "mouseenter", () => setR(HOVER_R));
-        on(headline, "mouseleave", () => setR(DOT_R));
+        // Hovering the description, scroll label, or CTA buttons expands the same mask.
+        revealTargets.forEach((el) => {
+            on(el, "mouseenter", () => setR(HOVER_R));
+            on(el, "mouseleave", () => setR(DOT_R));
+        });
 
         // social buttons: small blob + magnet
         anchors.current.forEach((a, i) => {
@@ -328,7 +332,7 @@ export default function HeroSection() {
         >
             {/* Background video */}
             <video
-                className="absolute inset-0 h-full w-full object-cover grayscale opacity-0.08"
+                className="absolute inset-0 h-full w-full object-cover grayscale opacity-[0.06]"
                 src="/videos/hero-model.mp4"
                 autoPlay
                 muted
@@ -354,7 +358,7 @@ export default function HeroSection() {
 
                         {/* Left: description + scroll */}
                         <div className="flex flex-col gap-8">
-                            <p className="max-w-md text-sm leading-6 text-black/50 md:text-base">
+                            <p ref={(el) => { if (el) revealRefs.current[0] = el; }} className="pointer-events-auto max-w-md text-sm leading-6 text-black/50 md:text-base">
                                 I build backend systems, Android applications and digital
                                 products with a focus on clean architecture, performance and
                                 thoughtful interaction.
@@ -363,7 +367,7 @@ export default function HeroSection() {
                             <div className="flex items-center gap-3">
                                 <span className="h-8 w-px bg-black/20" />
 
-                                <span className="text-[10px] uppercase tracking-[0.3em] text-black/40">
+                                <span ref={(el) => { if (el?.parentElement) revealRefs.current[1] = el.parentElement; }} className="text-[10px] uppercase tracking-[0.3em] text-black/40">
                                     Scroll to explore
                                 </span>
                             </div>
@@ -372,6 +376,7 @@ export default function HeroSection() {
                         {/* Right: actions */}
                         <div className="flex items-center gap-3">
                             <a
+                                ref={(el) => { if (el) revealRefs.current[2] = el; }}
                                 href="#projects"
                                 className="pointer-events-auto rounded-full bg-black px-8 py-4 text-sm font-medium !text-white transition-transform duration-300 hover:scale-105"
                             >
@@ -379,6 +384,7 @@ export default function HeroSection() {
                             </a>
 
                             <a
+                                ref={(el) => { if (el) revealRefs.current[3] = el; }}
                                 href="#contact"
                                 className="pointer-events-auto rounded-full border border-black/15 bg-white/40 px-8 py-4 text-sm font-medium !text-black transition-all duration-300 hover:border-black/40"
                             >
@@ -415,7 +421,7 @@ export default function HeroSection() {
                 style={{ clipPath: "url(#blob-clip)", backgroundColor: BLOB_TINT }}
             >
                 <div className="flex h-full flex-col items-center justify-center">
-                    <p className="mb-4 text-[10px] tracking-[0.35em]">Pawan Kumar</p>
+                    <p className="mb-4 text-[10px] tracking-[0.35em] text-black">Pawan Kumar</p>
                     <div className={`${headlineClasses} text-[#111]`}>
                         {ALT.map((word, i) => (
                             <span key={word + i}>{word}</span>
