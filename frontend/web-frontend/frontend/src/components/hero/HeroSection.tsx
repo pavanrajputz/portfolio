@@ -2,8 +2,8 @@ import { useEffect, useRef } from "react";
 import type { ReactNode, MutableRefObject } from "react";
 import gsap from "gsap";
 
-const BASE = ["BUILDING", "DIGITAL", "EXPERIENCES."];
-const ALT = ["HIDING", "BAD", "SHIT", "IN THE", "CODE."];
+const BASE = ["MAKING", "GOOD", "SHIT", "SINCE", "2024"];
+const ALT = ["HIDING", "BAD", "SHIT", "SINCE", "2024"];
 
 const DOT_R = 22; // idle blob radius
 const HOVER_R = 190; // radius over the headline
@@ -289,7 +289,7 @@ export default function HeroSection() {
             setR(0);
         });
 
-        // Hovering the description, scroll label, or CTA buttons expands the same mask.
+        // Hovering the headline, left supporting block, or either CTA expands the same mask.
         revealTargets.forEach((el) => {
             on(el, "mouseenter", () => setR(HOVER_R));
             on(el, "mouseleave", () => setR(DOT_R));
@@ -357,8 +357,8 @@ export default function HeroSection() {
                     <div className="flex items-end justify-between">
 
                         {/* Left: description + scroll */}
-                        <div className="flex flex-col gap-8">
-                            <p ref={(el) => { if (el) revealRefs.current[0] = el; }} className="pointer-events-auto max-w-md text-sm leading-6 text-black/50 md:text-base">
+                        <div ref={(el) => { if (el) revealRefs.current[0] = el; }} className="pointer-events-auto flex flex-col gap-8">
+                            <p className="max-w-md text-sm leading-6 text-black/50 md:text-base">
                                 I build backend systems, Android applications and digital
                                 products with a focus on clean architecture, performance and
                                 thoughtful interaction.
@@ -367,7 +367,7 @@ export default function HeroSection() {
                             <div className="flex items-center gap-3">
                                 <span className="h-8 w-px bg-black/20" />
 
-                                <span ref={(el) => { if (el?.parentElement) revealRefs.current[1] = el.parentElement; }} className="text-[10px] uppercase tracking-[0.3em] text-black/40">
+                                <span className="text-[10px] uppercase tracking-[0.3em] text-black/40">
                                     Scroll to explore
                                 </span>
                             </div>
@@ -376,7 +376,7 @@ export default function HeroSection() {
                         {/* Right: actions */}
                         <div className="flex items-center gap-3">
                             <a
-                                ref={(el) => { if (el) revealRefs.current[2] = el; }}
+                                ref={(el) => { if (el) revealRefs.current[1] = el; }}
                                 href="#projects"
                                 className="pointer-events-auto rounded-full bg-black px-8 py-4 text-sm font-medium !text-white transition-transform duration-300 hover:scale-105"
                             >
@@ -384,7 +384,7 @@ export default function HeroSection() {
                             </a>
 
                             <a
-                                ref={(el) => { if (el) revealRefs.current[3] = el; }}
+                                ref={(el) => { if (el) revealRefs.current[2] = el; }}
                                 href="#contact"
                                 className="pointer-events-auto rounded-full border border-black/15 bg-white/40 px-8 py-4 text-sm font-medium !text-black transition-all duration-300 hover:border-black/40"
                             >
@@ -426,6 +426,35 @@ export default function HeroSection() {
                         {ALT.map((word, i) => (
                             <span key={word + i}>{word}</span>
                         ))}
+                    </div>
+                </div>
+                {/* Clipped copies of the supporting content and CTAs. These are visual only;
+                    the original anchors underneath remain interactive. */}
+                <div className="absolute bottom-8 left-6 right-6 md:left-10 md:right-10 lg:left-16 lg:right-16">
+                    <div className="flex items-end justify-between">
+                        <div className="flex flex-col gap-8">
+                            <p className="max-w-md text-sm leading-6 text-black/85 md:text-base">
+                                I build backend systems, Android applications and digital
+                                products with a focus on clean architecture, performance and
+                                thoughtful interaction.
+                            </p>
+
+                            <div className="flex items-center gap-3">
+                                <span className="h-8 w-px bg-black/45" />
+                                <span className="text-[10px] uppercase tracking-[0.3em] text-black">
+                                    Scroll to explore
+                                </span>
+                            </div>
+                        </div>
+
+                        <div className="flex items-center gap-3">
+                            <span className="rounded-full bg-black px-8 py-4 text-sm font-medium text-[#efe9e1]">
+                                Explore work
+                            </span>
+                            <span className="rounded-full border border-black/30 bg-transparent px-8 py-4 text-sm font-medium text-black">
+                                Contact
+                            </span>
+                        </div>
                     </div>
                 </div>
                 <SocialColumn variant="overlay" iconRefs={overlayIcons} />
