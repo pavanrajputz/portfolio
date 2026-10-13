@@ -12,8 +12,9 @@ import java.util.List;
 @Configuration
 public class CorsConfig {
 
-    @Value("${app.cors.allowed-origin}")
-    private String allowedOrigin;
+    @Value("${app.cors.allowed-origins}")
+    private List<String> allowedOrigins;
+
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
@@ -21,7 +22,7 @@ public class CorsConfig {
         CorsConfiguration configuration = new CorsConfiguration();
 
         configuration.setAllowedOrigins(
-                List.of(allowedOrigin)
+                allowedOrigins
         );
 
         configuration.setAllowedMethods(
