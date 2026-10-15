@@ -34,39 +34,72 @@ const AboutSection = () => {
 
     useEffect(() => {
         const loadAboutData = async () => {
-            try {
-                setLoading(true);
-                setError(null);
+            setLoading(true);
+            setError(null);
 
-                const [
-                    profileData,
-                    skillsData,
-                    educationData,
-                    certificatesData,
-                ] = await Promise.all([
-                    getProfile(),
-                    getSkills(),
-                    getEducation(),
-                    getCertificates(),
-                ]);
+            const results = await Promise.allSettled([
+                getProfile(),
+                getSkills(),
+                getEducation(),
+                getCertificates(),
+            ]);
 
-                setProfile(profileData);
-                setSkills(skillsData);
-                setEducation(educationData);
-                setCertificates(certificatesData);
-            } catch (err) {
-                console.error("Failed to load about data:", err);
-                setError("Unable to load about information.");
-            } finally {
-                setLoading(false);
+            const [profileResult, skillsResult, educationResult, certificatesResult] =
+                results;
+
+            if (profileResult.status === "fulfilled") {
+                setProfile(profileResult.value);
+            } else {
+                console.error("Failed to load profile:", profileResult.reason);
             }
+
+            if (skillsResult.status === "fulfilled") {
+                setSkills(skillsResult.value);
+            } else {
+                console.error("Failed to load skills:", skillsResult.reason);
+            }
+
+            if (educationResult.status === "fulfilled") {
+                setEducation(educationResult.value);
+            } else {
+                console.error("Failed to load education:", educationResult.reason);
+            }
+
+            if (certificatesResult.status === "fulfilled") {
+                setCertificates(certificatesResult.value);
+            } else {
+                console.error(
+                    "Failed to load certificates:",
+                    certificatesResult.reason
+                );
+            }
+
+            const failedModules = results.reduce<string[]>(
+                (failed, result, index) => {
+                    if (result.status === "rejected") {
+                        failed.push(
+                            ["Profile", "Skills", "Education", "Certificates"][index]
+                        );
+                    }
+                    return failed;
+                },
+                []
+            );
+
+            if (failedModules.length > 0) {
+                setError(
+                    `Some About data could not be loaded: ${failedModules.join(", ")}.`
+                );
+            }
+
+            setLoading(false);
         };
 
         loadAboutData();
     }, []);
 
     useEffect(() => {
-        if (loading || error) {
+        if (loading) {
             return;
         }
 
@@ -142,9 +175,8 @@ const AboutSection = () => {
                     </div>
                 )}
 
-                {!loading && !error && (
+                {!loading && (
                     <div className="about-content">
-
                         {profile && (
                             <div className="about-block about-profile">
                                 <ProfileBlock profile={profile} />
@@ -160,11 +192,8 @@ const AboutSection = () => {
                         </div>
 
                         <div className="about-block about-certificates">
-                            <CertificatesBlock
-                                certificates={certificates}
-                            />
+                            <CertificatesBlock certificates={certificates} />
                         </div>
-
                     </div>
                 )}
 
