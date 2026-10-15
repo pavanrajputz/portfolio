@@ -326,6 +326,7 @@ export default function HeroSection() {
 
     return (
         <section
+            id="home"
             ref={sectionRef}
             className="relative h-screen w-full overflow-hidden bg-white"
             style={{ fontFamily: "'Jost', 'Futura', sans-serif" }}

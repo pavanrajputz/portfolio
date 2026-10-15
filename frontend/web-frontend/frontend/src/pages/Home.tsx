@@ -5,6 +5,7 @@ import SoundToggle from "../components/sound/SoundToggle.tsx";
 import ExperienceSection from "../components/experience/ExperienceSection";
 import ProjectsSection from "../components/projects/ProjectsSection";
 import AboutSection from "../components/about/AboutSection";
+import ContactSection from "../components/contacts/ContactSection";
 
 function Home() {
     return (
@@ -21,12 +22,7 @@ function Home() {
 
             <AboutSection />
 
-            <section
-                id="contact"
-                className="flex min-h-screen items-center justify-center"
-            >
-                <h2 className="text-5xl font-semibold">Contact</h2>
-            </section>
+            <ContactSection />
         </main>
     );
 }

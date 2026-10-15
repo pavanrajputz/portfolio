@@ -63,3 +63,22 @@ export const getCertificates = async (): Promise<Certificate[]> => {
     const response = await api.get<Certificate[]>("/certificates");
     return response.data;
 };
+
+
+/* =========================================
+   CONTACT
+   ========================================= */
+
+
+export type ContactMessagePayload = {
+    name: string;
+    email: string;
+    subject: string;
+    message: string;
+};
+
+export const submitContactMessage = async (
+    payload: ContactMessagePayload
+): Promise<void> => {
+    await api.post("/contact", payload);
+};
